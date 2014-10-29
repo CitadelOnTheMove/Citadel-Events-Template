@@ -902,8 +902,8 @@ function isDateFilterSelected(date, poi) {
     }
     else {
         try {
-            // var string = new Date(eventStart.toString());
-            //var formattedDate = $.datepicker.formatDate("dd-mm-yy", string);
+            var string = new Date(eventStart.toString());
+            var formattedDate = $.datepicker.formatDate("dd-mm-yy", string);
             var parsedEventDate = $.datepicker.parseDate('dd-mm-yy', formattedDate.toString());
         } catch (e) {
             return "error";
