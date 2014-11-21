@@ -29,13 +29,14 @@
 			$( ".ui-datepicker-calendar a", dp ).buttonMarkup({corners: false, shadow: false}); 
 			$( ".ui-datepicker-calendar a.ui-state-active", dp ).addClass("ui-btn-active"); // selected date
 			$( ".ui-datepicker-calendar a.ui-state-highlight", dp ).addClass("ui-btn-up-e"); // today"s date
-	        $( ".ui-datepicker-calendar .ui-btn", dp ).each(function(){
+			$( ".ui-datepicker-calendar .ui-btn", dp ).each(function(){
 				var el = $(this);
 				// remove extra button markup - necessary for date value to be interpreted correctly
-				//el.html( el.find( ".ui-btn-text" ).text() ); 
-                                el.text( el.text() ); 
-                                
-	        });
+				//el.html( el.find( ".ui-btn-text" ).text() );
+				el.text( el.text() );
+			});
+			// Update the alternative input data-value (value is blocked on some browsers)
+			$("#date").attr('data-value', dp.val());
 		};
 		
 		//update now
@@ -48,16 +49,16 @@
 		return this;
 	};
 	
-        
-        $( ".ui-page" ).live( "pagecreate", function(){     
-    $( "input[type='date'], input[data-type='date']" ).each(function(){
-        if ($(this).hasClass("hasDatepicker") == false) {
-            $(this).after( $( "<div />" ).datepicker({ altField: "#" + $(this).attr( "id" ), showOtherMonths: true , dateFormat: 'dd-mm-yy' }) );
-            $(this).addClass("hasDatepicker");
-        }
-    }); 
-});
-        
+	
+	$( ".ui-page" ).live( "pagecreate", function(){
+		$( "input[type='date'], input[data-type='date']" ).each(function(){
+			if ($(this).hasClass("hasDatepicker") == false) {
+				$(this).after( $( "<div />" ).datepicker({ altField: "#" + $(this).attr( "id" ), showOtherMonths: true , dateFormat: 'dd-mm-yy' }) );
+				$(this).addClass("hasDatepicker");
+			}
+		}); 
+	});
+	
 	//bind to pagecreate to automatically enhance date inputs	
 //	$( ".ui-page" ).live( "pagecreate", function(){		
 //		$( "input[type='date'], input:jqmData(type='date')" ).each(function(){

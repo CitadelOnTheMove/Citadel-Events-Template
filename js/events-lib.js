@@ -137,6 +137,8 @@ function addMarkers(referer)
     $.each(pois, function(i, poi) {
         //get the date picked from calendar
         var selectedDate = $("#date").val();
+        var selectedDateAlt = $("#date").attr('data-value');
+        if (selectedDate != selectedDateAlt) selectedDate = selectedDateAlt;
 
         if ((isFilterSelected(poi.category)))
         {
@@ -814,6 +816,8 @@ if(!$("#useDate").hasClass("ui-flipswitch"))
 
     $('#dateapply').click(function() {
         var dateApplied = $("#date").val();
+        var dateAppliedAlt = $("#date").attr('data-value');
+        if (dateApplied != dateAppliedAlt) dateApplied = dateAppliedAlt;
         if (dateApplied.length > 0) {
             dateIsNull = false;
         }
@@ -902,8 +906,8 @@ function isDateFilterSelected(date, poi) {
     }
     else {
         try {
-            // var string = new Date(eventStart.toString());
-            //var formattedDate = $.datepicker.formatDate("dd-mm-yy", string);
+            var string = new Date(eventStart.toString());
+            var formattedDate = $.datepicker.formatDate("dd-mm-yy", string);
             var parsedEventDate = $.datepicker.parseDate('dd-mm-yy', formattedDate.toString());
         } catch (e) {
             return "error";
